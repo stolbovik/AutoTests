@@ -2,7 +2,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class LoginTests extends BaseTest{
-
     /**
      * Данные для работы тестов
      */

@@ -9,12 +9,11 @@ import org.junit.Before;
 abstract public class BaseTest {
 
     public void init() {
-//        System.setProperty("webdriver.chrome.driver", "C:\\chromeDriver\\chromedriver.exe");
         WebDriverManager.edgedriver().setup();
         Configuration.browser = "edge";
         Configuration.driverManagerEnabled = true;
         Configuration.browserSize = "1920x1080";
-        Configuration.headless = true;
+        Configuration.headless = false;
     }
 
     @Before

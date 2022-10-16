@@ -14,7 +14,6 @@ public class PersonalUserPage {
 
     /**
      * Возвращаем полное имя пользователя
-     * @return
      */
     public String getUserName() {
         return nameOfUser.getText();
