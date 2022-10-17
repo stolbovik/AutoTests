@@ -1,11 +1,14 @@
+package Pages;
+
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
 /**
- * Главная личная страница пользователя
+ * Лента одноклассников
  */
-public class PersonalUserPage {
+public class LentaPage {
 
     /**
      * Блок на странцие с полным именем пользователя
