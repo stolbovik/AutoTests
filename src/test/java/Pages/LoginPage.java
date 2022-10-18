@@ -16,6 +16,7 @@ public class LoginPage {
      */
     private final SelenideElement inputLogin = $x("//input[@name=\"st.email\"]");
     private final SelenideElement inputPassword = $x("//input[@name=\"st.password\"]");
+    private final SelenideElement inputButton = $x("//input[@class='button-pro __wide']");
 
     public LoginPage(String url) {
         Selenide.open(url);
@@ -25,7 +26,7 @@ public class LoginPage {
      * Вводим логин в поле Login
      * @param login - наш логин
      */
-    public void clickOnLogin(String login) {
+    public void setLoginOnBlock(String login) {
         inputLogin.setValue(login);
     }
 
@@ -33,7 +34,7 @@ public class LoginPage {
      * Вводим пароль в поле Password
      * @param password - наш пароль
      */
-    public void clickOnPassword(String password) {
+    public void setPasswordOnBlock(String password) {
         inputPassword.setValue(password);
     }
 
@@ -42,6 +43,9 @@ public class LoginPage {
      */
     public void pressEnter() {
         inputPassword.sendKeys(Keys.ENTER);
+    }
+    public void pressInputButton() {
+        inputButton.click();
     }
 
     /**

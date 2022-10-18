@@ -25,11 +25,20 @@ public class LoginTests extends BaseTest{
      * Проверка неверно введённого логина
      */
     @Test
-    public void checkBadLoginLogging() {
+    public void checkBadLoginWithEnter() {
         LoginPage loginPage = new LoginPage(OK_BASE_URL);
-        loginPage.clickOnLogin(LOGIN + "error");
-        loginPage.clickOnPassword(PASSWORD);
+        loginPage.setLoginOnBlock(LOGIN + "error");
+        loginPage.setPasswordOnBlock(PASSWORD);
         loginPage.pressEnter();
+        Assert.assertEquals(errorMessege, loginPage.getError(nameOfErrorDiv));
+    }
+
+    @Test
+    public void checkBadLoginWithButton() {
+        LoginPage loginPage = new LoginPage(OK_BASE_URL);
+        loginPage.setLoginOnBlock(LOGIN + "error");
+        loginPage.setPasswordOnBlock(PASSWORD);
+        loginPage.pressInputButton();
         Assert.assertEquals(errorMessege, loginPage.getError(nameOfErrorDiv));
     }
 
@@ -37,24 +46,61 @@ public class LoginTests extends BaseTest{
      * Проверка неверно введённого пароля
      */
     @Test
-    public void checkBadPasswordLogging() {
+    public void checkBadPasswordWithEnter() {
         LoginPage loginPage = new LoginPage(OK_BASE_URL);
-        loginPage.clickOnLogin(LOGIN);
-        loginPage.clickOnPassword(PASSWORD + "error");
+        loginPage.setLoginOnBlock(LOGIN);
+        loginPage.setPasswordOnBlock(PASSWORD + "error");
         loginPage.pressEnter();
         Assert.assertEquals(errorMessege, loginPage.getError(nameOfErrorDiv));
     }
 
+    @Test
+    public void checkBadPasswordWithButton() {
+        LoginPage loginPage = new LoginPage(OK_BASE_URL);
+        loginPage.setLoginOnBlock(LOGIN);
+        loginPage.setPasswordOnBlock(PASSWORD + "error");
+        loginPage.pressInputButton();
+        Assert.assertEquals(errorMessege, loginPage.getError(nameOfErrorDiv));
+    }
+    /**
+     * Проверка неверно введённых пароля и логина
+     */
+    @Test
+    public void checkBadPasswordAndLoginWithEnter() {
+        LoginPage loginPage = new LoginPage(OK_BASE_URL);
+        loginPage.setLoginOnBlock(LOGIN + "error");
+        loginPage.setPasswordOnBlock(PASSWORD + "error");
+        loginPage.pressEnter();
+        Assert.assertEquals(errorMessege, loginPage.getError(nameOfErrorDiv));
+    }
+
+    @Test
+    public void checkBadPasswordAndLoginWithButton() {
+        LoginPage loginPage = new LoginPage(OK_BASE_URL);
+        loginPage.setLoginOnBlock(LOGIN + "error");
+        loginPage.setPasswordOnBlock(PASSWORD + "error");
+        loginPage.pressInputButton();
+        Assert.assertEquals(errorMessege, loginPage.getError(nameOfErrorDiv));
+    }
     /**
      *
      * Проверка корректно введённых данных
      */
     @Test
-    public void checkGoodLogging() {
+    public void checkGoodLoggingWithEnter() {
         LoginPage loginPage = new LoginPage(OK_BASE_URL);
-        loginPage.clickOnLogin(LOGIN);
-        loginPage.clickOnPassword(PASSWORD);
+        loginPage.setLoginOnBlock(LOGIN);
+        loginPage.setPasswordOnBlock(PASSWORD);
         loginPage.pressEnter();
+        Assert.assertEquals(userName, new LentaPage().getUserName());
+    }
+
+    @Test
+    public void checkGoodLoggingWithButton() {
+        LoginPage loginPage = new LoginPage(OK_BASE_URL);
+        loginPage.setLoginOnBlock(LOGIN);
+        loginPage.setPasswordOnBlock(PASSWORD);
+        loginPage.pressInputButton();
         Assert.assertEquals(userName, new LentaPage().getUserName());
     }
 
@@ -62,10 +108,18 @@ public class LoginTests extends BaseTest{
      * Проверка авторизации с пустым полем "Логин"
      */
     @Test
-    public void checkEmptyLoginLogging() {
+    public void checkEmptyLoginWithEnter() {
         LoginPage loginPage = new LoginPage(OK_BASE_URL);
-        loginPage.clickOnPassword(PASSWORD);
+        loginPage.setPasswordOnBlock(PASSWORD);
         loginPage.pressEnter();
+        Assert.assertEquals(notLoginMessege, loginPage.getError(nameOfErrorDiv));
+    }
+
+    @Test
+    public void checkEmptyLoginWithButton() {
+        LoginPage loginPage = new LoginPage(OK_BASE_URL);
+        loginPage.setPasswordOnBlock(PASSWORD);
+        loginPage.pressInputButton();
         Assert.assertEquals(notLoginMessege, loginPage.getError(nameOfErrorDiv));
     }
 
@@ -73,11 +127,36 @@ public class LoginTests extends BaseTest{
      * Проверка авторизации с пустым полем "Пароль"
      */
     @Test
-    public void checkEmptyPasswordLogging() {
+    public void checkEmptyPasswordWithEnter() {
         LoginPage loginPage = new LoginPage(OK_BASE_URL);
-        loginPage.clickOnLogin(LOGIN);
+        loginPage.setLoginOnBlock(LOGIN);
         loginPage.pressEnter();
         Assert.assertEquals(notPasswordMessege, loginPage.getError(nameOfErrorDiv));
+    }
+
+    @Test
+    public void checkEmptyPasswordWithButton() {
+        LoginPage loginPage = new LoginPage(OK_BASE_URL);
+        loginPage.setLoginOnBlock(LOGIN);
+        loginPage.pressInputButton();
+        Assert.assertEquals(notPasswordMessege, loginPage.getError(nameOfErrorDiv));
+    }
+
+    /*
+     * Проверка авторизации с пустыми полями "Пароль" и "Логин"
+     */
+    @Test
+    public void checkEmptyPasswordAndLoginWithEnter() {
+        LoginPage loginPage = new LoginPage(OK_BASE_URL);
+        loginPage.pressEnter();
+        Assert.assertEquals(notLoginMessege, loginPage.getError(nameOfErrorDiv));
+    }
+
+    @Test
+    public void checkEmptyPasswordAndLoginWithButton() {
+        LoginPage loginPage = new LoginPage(OK_BASE_URL);
+        loginPage.pressInputButton();
+        Assert.assertEquals(notLoginMessege, loginPage.getError(nameOfErrorDiv));
     }
 
 }

@@ -10,6 +10,9 @@ import org.junit.Before;
 */
 abstract public class BaseTest {
 
+    /**
+     * Инициализация браузера
+     */
     public void init() {
         WebDriverManager.edgedriver().setup();
         Configuration.browser = "edge";
