@@ -12,13 +12,13 @@ public class LoginTests extends BaseTest{
      * Данные для работы тестов
      */
     private final String OK_BASE_URL = "https://ok.ru/dk?st.cmd=anonymMain&st.fflo=on&st.lgn=on";
-    private final String LOGIN = "stolbov_svyatoslav_02@mail.ru";
-    private final String PASSWORD = "f+ac5EMrAC8gq.4";
+    private final String LOGIN = "technoPol4";
+    private final String PASSWORD = "technoPolis2022";
     private final String nameOfErrorDiv = "//div[@class='input-e login_error']";
     private final String errorMessege = "Неправильно указан логин и/или пароль";
     private final String notPasswordMessege = "Введите пароль";
     private final String notLoginMessege = "Введите логин";
-    private final String userName = "Святослав Столбов";
+    private final String userName = "technoPol4 technoPol4";
 
 
     /**
