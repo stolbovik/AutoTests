@@ -12,11 +12,11 @@ import static com.codeborne.selenide.Selenide.$x;
 public class LoginPage {
 
     /**
-     * Поля Input под логин и пароль
+     * Необхожимые элементы на странице
      */
-    private final SelenideElement inputLogin = $x("//input[@name=\"st.email\"]");
-    private final SelenideElement inputPassword = $x("//input[@name=\"st.password\"]");
-    private final SelenideElement inputButton = $x("//input[@class='button-pro __wide']");
+    private final SelenideElement inputLogin = $x("//*[@id='field_email']");
+    private final SelenideElement inputPassword = $x("//*[@id='field_password']");
+    private final SelenideElement inputButton = $x("//*[@class='login-form-actions']/input");
 
     public LoginPage(String url) {
         Selenide.open(url);
@@ -44,6 +44,9 @@ public class LoginPage {
     public void pressEnter() {
         inputPassword.sendKeys(Keys.ENTER);
     }
+    /**
+     * Нажимаем на кнопку "Войти в одноклассники"
+     */
     public void pressInputButton() {
         inputButton.click();
     }

@@ -12,7 +12,7 @@ public class LentaPage {
     /**
      * Блок на странцие с полным именем пользователя
      */
-    private final SelenideElement nameOfUser = $x("//a[@data-l='t,userPage']");
+    private final SelenideElement nameOfUser = $x("//*[@class='tico ellip']");
 
     /**
      * Возвращаем полное имя пользователя
