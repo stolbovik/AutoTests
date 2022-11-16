@@ -1,6 +1,6 @@
 package Pages;
 
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 
@@ -14,41 +14,41 @@ public class LoginPage {
     /**
      * Необхожимые элементы на странице
      */
-    private final SelenideElement inputLogin = $x("//*[@id='field_email']");
-    private final SelenideElement inputPassword = $x("//*[@id='field_password']");
-    private final SelenideElement inputButton = $x("//*[@class='login-form-actions']/input");
-
-    public LoginPage(String url) {
-        Selenide.open(url);
-    }
+    private final SelenideElement INPUT_LOGIN = $x("//*[@id='field_email']");
+    private final SelenideElement INPUT_PASSWORD = $x("//*[@id='field_password']");
+    private final SelenideElement INPUT_BUTTON = $x("//*[@class='login-form-actions']/input");
 
     /**
      * Вводим логин в поле Login
      * @param login - наш логин
      */
-    public void setLoginOnBlock(String login) {
-        inputLogin.setValue(login);
+    public LoginPage setLoginOnBlock(String login) {
+        INPUT_LOGIN.shouldBe(Condition.visible).setValue(login);
+        return this;
     }
 
     /**
      * Вводим пароль в поле Password
      * @param password - наш пароль
      */
-    public void setPasswordOnBlock(String password) {
-        inputPassword.setValue(password);
+    public LoginPage setPasswordOnBlock(String password) {
+        INPUT_PASSWORD.shouldBe(Condition.visible).setValue(password);
+        return this;
     }
 
     /**
      * Нажимаем Enter для првоерки введённых данных
      */
-    public void pressEnter() {
-        inputPassword.sendKeys(Keys.ENTER);
+    public LoginPage pressEnter() {
+        INPUT_PASSWORD.shouldBe(Condition.visible).sendKeys(Keys.ENTER);
+        return this;
     }
     /**
      * Нажимаем на кнопку "Войти в одноклассники"
      */
-    public void pressInputButton() {
-        inputButton.click();
+    public LoginPage pressInputButton() {
+        INPUT_BUTTON.shouldBe(Condition.visible).click();
+        return this;
     }
 
     /**
@@ -57,6 +57,6 @@ public class LoginPage {
      * @return -  текст ошибки
      */
     public String getError(String nameOfDiv) {
-        return $x(nameOfDiv).getText();
+        return $x(nameOfDiv).shouldBe(Condition.visible).getText();
     }
 }

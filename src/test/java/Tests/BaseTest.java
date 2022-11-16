@@ -10,6 +10,8 @@ import org.junit.Before;
 */
 abstract public class BaseTest {
 
+    private final String URL = "https://ok.ru";
+
     /**
      * Инициализация браузера
      */
@@ -19,6 +21,7 @@ abstract public class BaseTest {
         Configuration.driverManagerEnabled = true;
         Configuration.browserSize = "1920x1080";
         Configuration.headless = false;
+        Selenide.open(URL);
     }
 
     @Before
