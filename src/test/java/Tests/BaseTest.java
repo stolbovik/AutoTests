@@ -28,12 +28,12 @@ abstract public class BaseTest {
         Selenide.open(URL);
     }
 
-    @BeforeEach
+    @Before
     public void initTest() {
         init();
     }
 
-    @AfterEach
+    @After
     public void tearDown() {
         Selenide.closeWebDriver();
     }
