@@ -5,6 +5,10 @@ import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.runners.Parameterized;
+
 /**
 * Базовый класс для всех тестов
 */
@@ -24,12 +28,12 @@ abstract public class BaseTest {
         Selenide.open(URL);
     }
 
-    @Before
+    @BeforeEach
     public void initTest() {
         init();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         Selenide.closeWebDriver();
     }

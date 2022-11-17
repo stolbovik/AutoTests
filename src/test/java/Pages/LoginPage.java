@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class LoginPage {
 
     /**
-     * Необхожимые элементы на странице
+     * Необходимые элементы на странице
      */
     private final SelenideElement INPUT_LOGIN = $x("//*[@id='field_email']");
     private final SelenideElement INPUT_PASSWORD = $x("//*[@id='field_password']");
@@ -39,16 +39,16 @@ public class LoginPage {
     /**
      * Нажимаем Enter для првоерки введённых данных
      */
-    public LoginPage pressEnter() {
+    public LentaPage pressEnter() {
         INPUT_PASSWORD.shouldBe(Condition.visible).sendKeys(Keys.ENTER);
-        return this;
+        return new LentaPage();
     }
     /**
      * Нажимаем на кнопку "Войти в одноклассники"
      */
-    public LoginPage pressInputButton() {
+    public LentaPage pressInputButton() {
         INPUT_BUTTON.shouldBe(Condition.visible).click();
-        return this;
+        return new LentaPage();
     }
 
     /**
