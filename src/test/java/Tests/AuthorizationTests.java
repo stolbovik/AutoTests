@@ -1,10 +1,9 @@
 package Tests;
 
-import Pages.LoginPage;
-import Pages.LentaPage;
+import Pages.LoginObject;
+import Pages.LentaObject;
 import Resources.Tags;
 import Resources.TestBotInfo;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
@@ -14,13 +13,13 @@ import org.junit.jupiter.api.Tag;
 /*
 * Тесты для страници авторизации
 */
-@Tag("AuthorizationTests")
+@Tag(Tags.TAG_AUTHORIZATION_TESTS)
 @DisplayName("Authorization Tests")
 public class AuthorizationTests extends BaseTest{
     /**
      * Данные для работы тестов
      */
-    private final TestBotInfo testBotInfo = new TestBotInfo("technoPol4", "technoPolis2022",
+    private final TestBotInfo TEST_BOT_INFO = new TestBotInfo("technoPol4", "technoPolis2022",
             "technoPol4", "technoPol4");
     private final String NAME_OF_ERROR_DIV = "//div[@class='input-e login_error']";
     private final String ERROR_MESSAGE = "Неправильно указан логин и/или пароль";
@@ -32,12 +31,12 @@ public class AuthorizationTests extends BaseTest{
      */
     @Test
     @Tag(Tags.TAG_BAD_LOGIN)
-    @Tag(Tags.TAG_WITH_ENTER)
+    @Tag(Tags.TAG_LOGGING_WITH_ENTER)
     @DisplayName("Bad login with enter")
     public void checkBadLoginWithEnter() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin() + "error")
-                .setPasswordOnBlock(testBotInfo.getPassword())
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN() + "error")
+                .setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD())
                 .pressEnter();
         Assertions.assertEquals(ERROR_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Bad login with enter don't work");
@@ -45,13 +44,13 @@ public class AuthorizationTests extends BaseTest{
 
     @Test
     @Tag(Tags.TAG_BAD_LOGIN)
-    @Tag(Tags.TAG_WITH_BUTTON)
-    @Tag(Tags.TAG_WITH_BUTTON)
+    @Tag(Tags.TAG_LOGGING_WITH_BUTTON)
+    @Tag(Tags.TAG_LOGGING_WITH_BUTTON)
     @DisplayName("Bad login with button")
     public void checkBadLoginWithButton() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin() + "error")
-                .setPasswordOnBlock(testBotInfo.getPassword())
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN() + "error")
+                .setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD())
                 .pressInputButton();
         Assertions.assertEquals(ERROR_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Bad login with button don't work");
@@ -62,13 +61,13 @@ public class AuthorizationTests extends BaseTest{
      */
     @Test
     @Tag(Tags.TAG_BAD_PASSWORD)
-    @Tag(Tags.TAG_WITH_ENTER)
-    @Tag(Tags.TAG_WITH_BUTTON)
+    @Tag(Tags.TAG_LOGGING_WITH_ENTER)
+    @Tag(Tags.TAG_LOGGING_WITH_BUTTON)
     @DisplayName("Bad password with enter")
     public void checkBadPasswordWithEnter() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin())
-                .setPasswordOnBlock(testBotInfo.getPassword() + "error")
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN())
+                .setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD() + "error")
                 .pressEnter();
         Assertions.assertEquals(ERROR_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Bad password with enter don't work");
@@ -76,12 +75,12 @@ public class AuthorizationTests extends BaseTest{
 
     @Test
     @Tag(Tags.TAG_BAD_PASSWORD)
-    @Tag(Tags.TAG_WITH_BUTTON)
+    @Tag(Tags.TAG_LOGGING_WITH_BUTTON)
     @DisplayName("Bad password with button")
     public void checkBadPasswordWithButton() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin())
-                .setPasswordOnBlock(testBotInfo.getPassword() + "error")
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN())
+                .setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD() + "error")
                 .pressInputButton();
         Assertions.assertEquals(ERROR_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Bad password with button don't work");
@@ -92,12 +91,12 @@ public class AuthorizationTests extends BaseTest{
     @Test
     @Tag(Tags.TAG_BAD_LOGIN)
     @Tag(Tags.TAG_BAD_PASSWORD)
-    @Tag(Tags.TAG_WITH_ENTER)
+    @Tag(Tags.TAG_LOGGING_WITH_ENTER)
     @DisplayName("Bad login and password with enter")
     public void checkBadPasswordAndLoginWithEnter() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin() + "error")
-                .setPasswordOnBlock(testBotInfo.getPassword() + "error")
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN() + "error")
+                .setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD() + "error")
                 .pressEnter();
         Assertions.assertEquals(ERROR_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Bad login and password with enter don't work");
@@ -106,12 +105,12 @@ public class AuthorizationTests extends BaseTest{
     @Test
     @Tag(Tags.TAG_BAD_LOGIN)
     @Tag(Tags.TAG_BAD_PASSWORD)
-    @Tag(Tags.TAG_WITH_BUTTON)
+    @Tag(Tags.TAG_LOGGING_WITH_BUTTON)
     @DisplayName("Bad login and password with button")
     public void checkBadPasswordAndLoginWithButton() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin() + "error")
-                .setPasswordOnBlock(testBotInfo.getPassword() + "error")
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN() + "error")
+                .setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD() + "error")
                 .pressInputButton();
         Assertions.assertEquals(ERROR_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Bad login and password with button don't work");
@@ -121,42 +120,42 @@ public class AuthorizationTests extends BaseTest{
      * Проверка корректно введённых данных
      */
     @Test
-    @Tag(Tags.TAG_WITH_ENTER)
-    @Tag(Tags.TAG_GOOD_TEST)
+    @Tag(Tags.TAG_LOGGING_WITH_ENTER)
+    @Tag(Tags.TAG_GOOD_LOGGING)
     @DisplayName("Good logging with enter")
     public void checkGoodLoggingWithEnter() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin())
-                .setPasswordOnBlock(testBotInfo.getPassword())
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN())
+                .setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD())
                 .pressEnter().checkPage();
-        Assertions.assertEquals(testBotInfo.getFirstName() + ' ' + testBotInfo.getLastName(),
-                new LentaPage().getUserName(), "Good logging with enter don't work");
+        Assertions.assertEquals(TEST_BOT_INFO.getFirstName() + ' ' + TEST_BOT_INFO.getLastName(),
+                new LentaObject("//*[@class='navigation']").getUserName(), "Good logging with enter don't work");
     }
 
     @Test
-    @Tag(Tags.TAG_WITH_ENTER)
-    @Tag(Tags.TAG_GOOD_TEST)
+    @Tag(Tags.TAG_LOGGING_WITH_ENTER)
+    @Tag(Tags.TAG_GOOD_LOGGING)
     @Disabled("Old Version Of Test")
     public void checkGoodLoggingWithEnterOldVersion() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin());
-        loginPage.setPasswordOnBlock(testBotInfo.getPassword());
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN());
+        loginPage.setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD());
         loginPage.pressEnter();
-        Assertions.assertEquals(testBotInfo.getFirstName() + ' ' + testBotInfo.getLastName(),
-                new LentaPage().getUserName(), "Good logging with enter don't work");
+        Assertions.assertEquals(TEST_BOT_INFO.getFirstName() + ' ' + TEST_BOT_INFO.getLastName(),
+                new LentaObject("//*[@class='navigation']").getUserName(), "Good logging with enter don't work");
     }
 
     @Test
-    @Tag(Tags.TAG_WITH_BUTTON)
-    @Tag(Tags.TAG_GOOD_TEST)
+    @Tag(Tags.TAG_LOGGING_WITH_BUTTON)
+    @Tag(Tags.TAG_GOOD_LOGGING)
     @DisplayName("Good logging with button")
     public void checkGoodLoggingWithButton() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin())
-                .setPasswordOnBlock(testBotInfo.getPassword())
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN())
+                .setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD())
                 .pressInputButton().checkPage();
-        Assertions.assertEquals(testBotInfo.getFirstName() + ' ' + testBotInfo.getLastName(),
-                new LentaPage().getUserName(), "Good logging with button don't work");
+        Assertions.assertEquals(TEST_BOT_INFO.getFirstName() + ' ' + TEST_BOT_INFO.getLastName(),
+                new LentaObject("//*[@class='navigation']").getUserName(), "Good logging with button don't work");
     }
 
     /*
@@ -164,11 +163,11 @@ public class AuthorizationTests extends BaseTest{
      */
     @Test
     @Tag(Tags.TAG_BAD_LOGIN)
-    @Tag(Tags.TAG_WITH_ENTER)
+    @Tag(Tags.TAG_LOGGING_WITH_ENTER)
     @DisplayName("Empty login with enter")
     public void checkEmptyLoginWithEnter() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setPasswordOnBlock(testBotInfo.getPassword())
+        LoginObject loginPage = new LoginObject();
+        loginPage.setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD())
                 .pressEnter();
         Assertions.assertEquals(NOT_LOGIN_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Empty login with enter don't work");
@@ -176,11 +175,11 @@ public class AuthorizationTests extends BaseTest{
 
     @Test
     @Tag(Tags.TAG_BAD_LOGIN)
-    @Tag(Tags.TAG_WITH_BUTTON)
+    @Tag(Tags.TAG_LOGGING_WITH_BUTTON)
     @DisplayName("Empty login with button")
     public void checkEmptyLoginWithButton() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setPasswordOnBlock(testBotInfo.getPassword())
+        LoginObject loginPage = new LoginObject();
+        loginPage.setPasswordOnBlock(TEST_BOT_INFO.getPASSWORD())
                 .pressInputButton();
         Assertions.assertEquals(NOT_LOGIN_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Empty login with button don't work");
@@ -191,11 +190,11 @@ public class AuthorizationTests extends BaseTest{
      */
     @Test
     @Tag(Tags.TAG_BAD_PASSWORD)
-    @Tag(Tags.TAG_WITH_ENTER)
+    @Tag(Tags.TAG_LOGGING_WITH_ENTER)
     @DisplayName("Empty password with enter")
     public void checkEmptyPasswordWithEnter() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin())
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN())
                 .pressEnter();
         Assertions.assertEquals(NOT_PASSWORD_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Empty password with enter don't work");
@@ -203,11 +202,11 @@ public class AuthorizationTests extends BaseTest{
 
     @Test
     @Tag(Tags.TAG_BAD_PASSWORD)
-    @Tag(Tags.TAG_WITH_BUTTON)
+    @Tag(Tags.TAG_LOGGING_WITH_BUTTON)
     @DisplayName("Empty password with button")
     public void checkEmptyPasswordWithButton() {
-        LoginPage loginPage = new LoginPage();
-        loginPage.setLoginOnBlock(testBotInfo.getLogin())
+        LoginObject loginPage = new LoginObject();
+        loginPage.setLoginOnBlock(TEST_BOT_INFO.getLOGIN())
                 .pressInputButton();
         Assertions.assertEquals(NOT_PASSWORD_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Empty password with button don't work");
@@ -219,10 +218,10 @@ public class AuthorizationTests extends BaseTest{
     @Test
     @Tag(Tags.TAG_BAD_LOGIN)
     @Tag(Tags.TAG_BAD_PASSWORD)
-    @Tag(Tags.TAG_WITH_ENTER)
+    @Tag(Tags.TAG_LOGGING_WITH_ENTER)
     @DisplayName("Empty login and password with enter")
     public void checkEmptyPasswordAndLoginWithEnter() {
-        LoginPage loginPage = new LoginPage();
+        LoginObject loginPage = new LoginObject();
         loginPage.pressEnter();
         Assertions.assertEquals(NOT_LOGIN_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Empty login and password with enter don't work");
@@ -231,10 +230,10 @@ public class AuthorizationTests extends BaseTest{
     @Test
     @Tag(Tags.TAG_BAD_LOGIN)
     @Tag(Tags.TAG_BAD_PASSWORD)
-    @Tag(Tags.TAG_WITH_BUTTON)
+    @Tag(Tags.TAG_LOGGING_WITH_BUTTON)
     @DisplayName("Empty login and password with button")
     public void checkEmptyPasswordAndLoginWithButton() {
-        LoginPage loginPage = new LoginPage();
+        LoginObject loginPage = new LoginObject();
         loginPage.pressInputButton();
         Assertions.assertEquals(NOT_LOGIN_MESSAGE, loginPage.getError(NAME_OF_ERROR_DIV),
                 "Empty login and password with button don't work");

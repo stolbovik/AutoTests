@@ -2,40 +2,69 @@ package Resources;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Calendar;
 import java.util.Date;
 
+/*
+* Класс пользователя
+* */
 @Getter
 @Setter
 public class TestBotInfo {
+    /*
+     * Инфомрация о пользователе (только нужная в тестах)
+     * */
+    @NotNull
+    private final String LOGIN;
 
-    private final String login;
-    private final String password;
+    @NotNull
+    private final String PASSWORD;
+
+    @NotNull
     private Date birthday;
+
+    @NotNull
     private String firstName;
+
+    @NotNull
     private String lastName;
+
     private int countOfPost;
+
     private int numOfSubscribers;
+
+    @NotNull
     private String id;
 
 
-    public TestBotInfo(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public TestBotInfo(@NotNull String LOGIN,
+                       @NotNull String PASSWORD) {
+        this.LOGIN = LOGIN;
+        this.PASSWORD = PASSWORD;
     }
 
-    public TestBotInfo(String login, String password, String firstName, String lastName) {
-        this.login = login;
-        this.password = password;
+    public TestBotInfo(@NotNull String LOGIN,
+                       @NotNull String PASSWORD,
+                       @NotNull String firstName,
+                       @NotNull String lastName) {
+        this.LOGIN = LOGIN;
+        this.PASSWORD = PASSWORD;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public TestBotInfo(String login, String password, Date birthday,
-                       String firstName, String lastName, int countOfPost, int numOfSubscribers, String id) {
-        this.login = login;
-        this.password = password;
+    public TestBotInfo(@NotNull String LOGIN,
+                       @NotNull String PASSWORD,
+                       @NotNull Date birthday,
+                       @NotNull String firstName,
+                       @NotNull String lastName,
+                       int countOfPost,
+                       int numOfSubscribers,
+                       @NotNull String id) {
+        this.LOGIN = LOGIN;
+        this.PASSWORD = PASSWORD;
         this.birthday = birthday;
         this.firstName = firstName;
         this.lastName = lastName;

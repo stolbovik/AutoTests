@@ -2,6 +2,7 @@ package Pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -9,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$x;
 /*
 * Страница для входа сайта ok.ru
 */
-public class LoginPage extends LoadablePage{
+public class LoginObject extends LoadableObject {
 
     /**
      * Необходимые элементы на странице
@@ -18,7 +19,7 @@ public class LoginPage extends LoadablePage{
     private final SelenideElement INPUT_PASSWORD = $x("//*[@id='field_password']");
     private final SelenideElement INPUT_BUTTON = $x("//*[@class='login-form-actions']/input");
 
-    public LoginPage() {
+    public LoginObject() {
         checkPage();
     }
 
@@ -33,18 +34,16 @@ public class LoginPage extends LoadablePage{
     }
     /**
      * Вводим логин в поле Login
-     * @param login - наш логин
      */
-    public LoginPage setLoginOnBlock(String login) {
+    public LoginObject setLoginOnBlock(@NotNull String login) {
         INPUT_LOGIN.setValue(login);
         return this;
     }
 
     /**
      * Вводим пароль в поле Password
-     * @param password - наш пароль
      */
-    public LoginPage setPasswordOnBlock(String password) {
+    public LoginObject setPasswordOnBlock(@NotNull String password) {
         INPUT_PASSWORD.setValue(password);
         return this;
     }
@@ -52,24 +51,22 @@ public class LoginPage extends LoadablePage{
     /**
      * Нажимаем Enter для првоерки введённых данных
      */
-    public LentaPage pressEnter() {
+    public LentaObject pressEnter() {
         INPUT_PASSWORD.sendKeys(Keys.ENTER);
-        return new LentaPage();
+        return new LentaObject("//*[@class='navigation']");
     }
     /**
      * Нажимаем на кнопку "Войти в одноклассники"
      */
-    public LentaPage pressInputButton() {
+    public LentaObject pressInputButton() {
         INPUT_BUTTON.click();
-        return new LentaPage();
+        return new LentaObject("//*[@class='navigation']");
     }
 
     /**
      * Получаем текст ошибки со страницы
-     * @param nameOfDiv - указатель на блок с текстом ошибки
-     * @return -  текст ошибки
      */
-    public String getError(String nameOfDiv) {
+    public String getError(@NotNull String nameOfDiv) {
         return $x(nameOfDiv).shouldBe(Condition.visible).getText();
     }
 }

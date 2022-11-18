@@ -3,25 +3,22 @@ package Pages;
 import Resources.TestBotInfo;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-
-import java.util.Calendar;
+import org.jetbrains.annotations.NotNull;
 
 import static com.codeborne.selenide.Selenide.$x;
 /**
  * Личная страница
  */
-public class PersonalPage extends LoadablePage{
+public class PersonalObject extends LoadableObject {
 
     /**
      * Необходимые блоки на странице
      */
     private TestBotInfo testBotInfo;
     private final SelenideElement NAME_OF_USER = $x("//*[@class='profile-user-info_name']/h1");
-    private final SelenideElement COUNT_OF_POSTS = $x("//*[@href='/profile/585556286938/statuses']//span");
     private final SelenideElement BIRTHDAY = $x("//*[@data-type='AGE']");
-    private final SelenideElement COUNT_OF_SUBSCRIBERS = $x("//*[@data-type='SUBSCRIBERS']/a");
 
-    public PersonalPage() {
+    public PersonalObject() {
         checkPage();
     }
 
@@ -31,15 +28,13 @@ public class PersonalPage extends LoadablePage{
     @Override
     public void checkPage() {
         NAME_OF_USER.shouldBe(Condition.visible.because("Не отображается имя и фамилия пользователя"));
-        COUNT_OF_POSTS.shouldBe(Condition.visible.because("Не отображается количество заметок"));
         BIRTHDAY.shouldBe(Condition.visible.because("Не отображается дата дня рождения"));
-        COUNT_OF_SUBSCRIBERS.shouldBe(Condition.visible.because("Не отображается количество подписчиков"));
     }
 
     /**
      * Привязка тестового бота
      */
-    public PersonalPage setTestBotInfo(TestBotInfo testBotInfo) {
+    public PersonalObject setTestBotInfo(@NotNull TestBotInfo testBotInfo) {
         this.testBotInfo = testBotInfo;
         return this;
     }
@@ -49,20 +44,6 @@ public class PersonalPage extends LoadablePage{
      */
     public String getNameOfUser() {
         return NAME_OF_USER.getText();
-    }
-
-    /**
-     * Геттер количества подписчиков
-     */
-    public char getCountOfSubscribers() {
-        return COUNT_OF_SUBSCRIBERS.getText().charAt(0);
-    }
-
-    /**
-     * Геттер количества записей
-     */
-    public String getCountOfPost() {
-        return COUNT_OF_POSTS.getText();
     }
 
     /**

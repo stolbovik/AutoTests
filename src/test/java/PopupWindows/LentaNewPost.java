@@ -2,6 +2,7 @@ package PopupWindows;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.jetbrains.annotations.NotNull;
 
 import static com.codeborne.selenide.Selenide.$x;
 /**
@@ -17,7 +18,7 @@ public class LentaNewPost {
     /**
      * Выкладываем новый пост
      */
-    public void doNewPost(String post) {
+    public void doNewPost(@NotNull String post) {
         NEW_POST_FIELD.setValue(post);
         TO_DO_POST_BUTTON.shouldBe(Condition.visible).click();
     }
